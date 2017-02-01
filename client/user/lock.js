@@ -1,8 +1,9 @@
 //add authentication
-
+var dotenv = require('dotenv');
+dotenv.load();
 var lock = new Auth0Lock(
-  'ENV-VAR',
-  'towering-cranes.auth0.com'
+  process.env.AUTH0_CLIENT_ID,
+  process.env.AUTH0_DOMAIN
 );
 
 // Listening for the authenticated event

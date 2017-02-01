@@ -1,46 +1,16 @@
 // controller for game collection
 var app = angular.module('gameMon.gameCollection', ['ui.materialize']);
-app.controller('GameCollectionController', function($scope, UserCollection) {
+app.controller('GameCollectionController', function($scope, userCollection) {
   $scope.data = {};
-  $scope.username = 'kevin';
-  //Store games in corresponding objects
-  $scope.platforms = {};
-  $scope.genres = {};
-  //Store just names in array
-  $scope.platformArr = [];
-  $scope.genreArr = [];
+  $scope.data.games = [];
+  $scope.username = 'test';
+  // for(var i = 0; i < 5; i++){
+  //   $scope.data.games[i] = 'Hello';
+  // };
 
-  UserCollection.getUserCollection($scope.username, function(res) {
-    //Gets user collection, stores platforms and games in $scope.platforms
+  userCollection.getUserCollection($scope.username, function(res) {
     $scope.data.games = res.data;
-    for (var i = 0; i < $scope.data.games.length; i++) {
-      var game = $scope.data.games[i];
-      //Platforms
-      for (var j = 0; j < game.platforms.length; j++) {
-        var platform = game.platforms[j].name;
-        if (!$scope.platforms.hasOwnProperty(platform)) {
-          $scope.platforms[platform] = [game];
-          $scope.platformArr.push(platform);
-        } else {
-          $scope.platforms[platform].push(game);
-        }
-      }
-      //Genres
-      for (var k = 0; k < game.genres.length; k++) {
-        var genre = game.genres[k].name;
-        if (!$scope.genres.hasOwnProperty(genre)) {
-          $scope.genres[genre] = [game];
-          $scope.genreArr.push(genre);
-        } else {
-          $scope.genres[genre].push(game);
-        }
-      }
-    }
-    console.log($scope.data.games);
   });
-
-  //TODO: Add/remove game to collection after search and modal is implemented
-
 
   // userCollection.addGameToCollection($scope.username, 24024, function(res) {
   //   console.log(res.data);
