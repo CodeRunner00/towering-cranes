@@ -1,4 +1,5 @@
 // controller for game collection
+<<<<<<< HEAD
 var app = angular.module('gameMon.gameCollection', ['ui.materialize']);
 app.controller('GameCollectionController', function($scope, userCollection) {
   $scope.data = {};
@@ -9,6 +10,26 @@ app.controller('GameCollectionController', function($scope, userCollection) {
   // };
 
   userCollection.getUserCollection($scope.username, function(res) {
+=======
+var app = angular.module('gameMon.gameCollection', ['ui.materialize', 'gameMon.selectedGame']);
+app.controller('GameCollectionController', function($scope, UserCollection, SelectedGame) {
+  $scope.data = {};
+  $scope.username = 'kevin';
+  //Store games in corresponding objects
+  $scope.platforms = {};
+  $scope.genres = {};
+  //Store just names in array
+  $scope.platformArr = [];
+  $scope.genreArr = [];
+
+  $scope.selectGame = function(id) {
+    SelectedGame.setCurrentGame(id);
+    console.log('Selected Game: ', id);
+  };
+
+  UserCollection.getUserCollection($scope.username, function(res) {
+    //Gets user collection, stores platforms and games in $scope.platforms
+>>>>>>> de1a6abb5e2743dd1ef954d63e493f8bd5401e88
     $scope.data.games = res.data;
   });
 
@@ -21,7 +42,7 @@ app.controller('GameCollectionController', function($scope, userCollection) {
   // });
 });
 
-app.factory('userCollection', ['$http', function($http) {
+app.factory('UserCollection', ['$http', function($http) {
   var db = {};
 
   db.getUserCollection = function(username, callback) {
