@@ -1,10 +1,16 @@
 //add authentication
-var dotenv = require('dotenv');
-dotenv.load();
+
+// var lock = new Auth0Lock(
+//   process.env.AUTH0_CLIENT_ID,
+//   process.env.AUTH0_DOMAIN
+// );
+
 var lock = new Auth0Lock(
-  process.env.AUTH0_CLIENT_ID,
-  process.env.AUTH0_DOMAIN
+  window.authClient,
+  window.authDomain
+
 );
+
 
 // Listening for the authenticated event
 lock.on("authenticated", function(authResult) {
@@ -22,8 +28,20 @@ lock.on("authenticated", function(authResult) {
 });
 
 document.getElementById('btn-login').addEventListener('click', function() {
+  //lock.show can take in an object to config
   lock.show();
 });
+
+document.getElementById('btn-logout').addEventListener('click', function() {
+  logOutUser();
+});
+
+function logOutUser() {
+
+  localStorage.removeItem('accessToken');
+  window.location.href = 'https://towering-cranes.auth0.com/v2/logout?returnTo=http%3A%2F%2F127.0.0.1%3A8080%2F';
+
+}
 
 var token = localStorage.getItem('accessToken');
 if (token) {
