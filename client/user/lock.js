@@ -58,5 +58,6 @@ if (token) {
 function showLoggedIn() {
   var currentPath = window.location.href;//full current url
   console.log('Replacement path ', 'http://127.0.0.1:8080/#/gamemon');
-  window.location.href = 'http://127.0.0.1:8080/#/gamemon';
+  // window.location.href = 'http://127.0.0.1:8080/#/gamemon';
+  window.location.href = '/#/gamemon';
 }
