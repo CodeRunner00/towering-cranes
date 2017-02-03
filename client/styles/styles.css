@@ -7,6 +7,10 @@ body {
   flex-direction: column;
 }
 
+article img, aside img {
+  max-width: 100%;
+}
+
 main {
   flex: 1 0 auto;
 }
@@ -67,6 +71,7 @@ main {
 
 .gameImage {
   max-height: 200px;
+  max-width:200px;
 }
 .searchCard {
   font-size: 10px;
@@ -77,4 +82,14 @@ main {
 .collectionTitle{
   padding-left:10px;
   padding-top:10px;
+}
+.dropdown-button {
+  min-width: 150px;
+}
+.listImage {
+  max-height: 200px;
+}
+.card-image {
+  padding-top:10px;
+  padding-bottom:20px;
 }

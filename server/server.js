@@ -8,8 +8,7 @@ var app = express();
 app.use(express.static(__dirname + "/../client"));
 app.use(bodyParser.json());
 var port = process.env.PORT || 8080;
-var dotenv = require('dotenv');
-dotenv.load();
+
 // Add a user to db
 app.post('/users', function(req, res) {
   var requestObj = req.body;
